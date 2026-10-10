@@ -1,5 +1,13 @@
-# Object file
-*.o
+# Dependencies
+node_modules/
 
-# Ada Library Information
-*.ali
+# Environment Variables
+.env
+.env.local
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+

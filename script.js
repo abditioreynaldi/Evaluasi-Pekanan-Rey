@@ -332,3 +332,149 @@ const sisaBagi20rb3 =
   kembalian3 >= 0
     ? kembalian3 % 20000
     : null;
+
+// ============================================
+// LAPORAN HARIAN
+// ============================================
+
+let pendapatanHarian = 0;
+let jumlahTransaksi = 0;
+
+pendapatanHarian += totalBayar1;
+jumlahTransaksi++;
+
+pendapatanHarian += totalBayar2;
+jumlahTransaksi++;
+
+pendapatanHarian += totalBayar3;
+jumlahTransaksi++;
+
+const rataRataPendapatan =
+  pendapatanHarian / jumlahTransaksi;
+
+const selisihTerbesar =
+  Math.max(totalBayar1, totalBayar2, totalBayar3) -
+  Math.min(totalBayar1, totalBayar2, totalBayar3);
+
+const persentaseTransaksiPertama =
+  (totalBayar1 / pendapatanHarian) * 100;
+
+const hargaKopiTigaBulan =
+  menu[0].harga * (1.05 ** 3);
+
+// ============================================
+// CETAK LAPORAN TRANSAKSI
+// ============================================
+
+console.log("\n========================================================");
+console.log(
+  `LAPORAN HARIAN ${kedai.nama.toUpperCase()}`
+);
+console.log("========================================================");
+
+// TRANSAKSI 1
+
+console.log(`
+--- RINGKASAN TRANSAKSI 1 (${transaksi[0].id}) ---
+Pelanggan         : ${transaksi[0].namaPelanggan}
+Member            : ${transaksi[0].sudahMember ? "Ya" : "Tidak"}
+Subtotal          : Rp ${subtotal1.toLocaleString("id-ID")}
+Potongan (10%)    : Rp ${potongan1.toLocaleString("id-ID")}
+Pajak (11%)       : Rp ${pajak1.toLocaleString("id-ID")}
+Total Bayar       : Rp ${totalBayar1.toLocaleString("id-ID")}
+Uang Bayar        : Rp ${transaksi[0].uangBayar.toLocaleString("id-ID")}
+Kembalian         : Rp ${kembalian1.toLocaleString("id-ID")}
+Status Pembayaran : ${uangCukup1 ? "UANG CUKUP" : "UANG KURANG"}
+Gratis Antar      : ${gratisAntar1 ? "DAPAT" : "TIDAK DAPAT"}
+Semua Menu Ready  : ${semuaMenuTersedia1 ? "YA" : "TIDAK"}
+Sisa Bagi Rp50rb  : Rp ${sisaBagi50rb1.toLocaleString("id-ID")}
+Sisa Bagi Rp20rb  : Rp ${sisaBagi20rb1.toLocaleString("id-ID")}
+Catatan           : ${transaksi[0].catatan ?? "-"}
+`);
+
+// TRANSAKSI 2
+
+console.log(`
+--- RINGKASAN TRANSAKSI 2 (${transaksi[1].id}) ---
+Pelanggan         : ${transaksi[1].namaPelanggan}
+Member            : ${transaksi[1].sudahMember ? "Ya" : "Tidak"}
+Subtotal          : Rp ${subtotal2.toLocaleString("id-ID")}
+Potongan (10%)    : Rp ${potongan2.toLocaleString("id-ID")}
+Pajak (11%)       : Rp ${pajak2.toLocaleString("id-ID")}
+Total Bayar       : Rp ${totalBayar2.toLocaleString("id-ID")}
+Uang Bayar        : Rp ${transaksi[1].uangBayar.toLocaleString("id-ID")}
+Kembalian         : Rp ${kembalian2.toLocaleString("id-ID")}
+Status Pembayaran : ${uangCukup2 ? "UANG CUKUP" : "UANG KURANG"}
+Gratis Antar      : ${gratisAntar2 ? "DAPAT" : "TIDAK DAPAT"}
+Semua Menu Ready  : ${semuaMenuTersedia2 ? "YA" : "TIDAK"}
+Sisa Bagi Rp50rb  : Rp ${sisaBagi50rb2.toLocaleString("id-ID")}
+Sisa Bagi Rp20rb  : Rp ${sisaBagi20rb2.toLocaleString("id-ID")}
+Catatan           : ${transaksi[1].catatan ?? "-"}
+`);
+
+// TRANSAKSI 3
+
+console.log(`
+--- RINGKASAN TRANSAKSI 3 (${transaksi[2].id}) ---
+Pelanggan         : ${transaksi[2].namaPelanggan}
+Member            : ${transaksi[2].sudahMember ? "Ya" : "Tidak"}
+Subtotal          : Rp ${subtotal3.toLocaleString("id-ID")}
+Potongan (10%)    : Rp ${potongan3.toLocaleString("id-ID")}
+Pajak (11%)       : Rp ${pajak3.toLocaleString("id-ID")}
+Total Bayar       : Rp ${totalBayar3.toLocaleString("id-ID")}
+Uang Bayar        : Rp ${transaksi[2].uangBayar.toLocaleString("id-ID")}
+Kembalian         : Rp ${kembalian3.toLocaleString("id-ID")}
+Status Pembayaran : ${
+  uangCukup3
+    ? "UANG CUKUP"
+    : `UANG KURANG (Kurang Rp ${Math.abs(
+        kembalian3
+      ).toLocaleString("id-ID")})`
+}
+Gratis Antar      : ${gratisAntar3 ? "DAPAT" : "TIDAK DAPAT"}
+Semua Menu Ready  : ${
+  semuaMenuTersedia3
+    ? "YA"
+    : "TIDAK (Ada Menu Habis)"
+}
+Catatan           : ${transaksi[2].catatan ?? "-"}
+`);
+
+// ============================================
+// REKAPITULASI
+// ============================================
+
+console.log("========================================================");
+console.log("REKAPITULASI LAPORAN KASIR");
+console.log("========================================================");
+
+console.log(
+  "Total Pendapatan Harian : Rp",
+  pendapatanHarian.toLocaleString("id-ID")
+);
+
+console.log(
+  "Jumlah Transaksi        :",
+  jumlahTransaksi,
+  "transaksi"
+);
+
+console.log(
+  "Rata-rata Pendapatan    : Rp",
+  rataRataPendapatan.toLocaleString("id-ID")
+);
+
+console.log(
+  "Selisih Terbesar        : Rp",
+  selisihTerbesar.toLocaleString("id-ID")
+);
+
+console.log(
+  "Porsi Transaksi Pertama :",
+  `${persentaseTransaksiPertama.toFixed(2)}%`
+);
+
+console.log(
+  "Harga Kopi Setelah 3 Bulan : Rp",
+  hargaKopiTigaBulan.toLocaleString("id-ID")
+);
